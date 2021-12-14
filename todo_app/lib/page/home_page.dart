@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
-
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: Text('Home'),
-    ),
-    body: Center(child: Text('Home', style: TextStyle(fontSize: 60))),
-  ); 
+  _HomePageState createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  int _counter = 0;
+
+    void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext content) => Scaffold(
+    appBar: AppBar(
+      title: const Text('Home'),
+    ),
+    body: Center(
+      child: Text('Home $_counter', style: const TextStyle(fontSize: 60))),
+    floatingActionButton: FloatingActionButton(
+      onPressed: _incrementCounter,
+      tooltip: 'Increment',
+      child: const Icon(Icons.add),
+    ),
+  );
 }

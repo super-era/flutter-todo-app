@@ -52,10 +52,6 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      title: const Text('To-Do List'),
-      centerTitle: true,
-    ),
     body: IndexedStack(
       index: currentIndex,
       children: screens,
