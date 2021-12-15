@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
+
+import '/widget/add_todo_widget.dart';
 class ListPage extends StatefulWidget {
   @override
   _ListPageState createState() => _ListPageState();
 }
 
 class _ListPageState extends State<ListPage> {
-  int _counter = 0;
-
-    void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
-  Widget build(BuildContext content) => Scaffold(
-    appBar: AppBar(
-      title: const Text('List'),
-    ),
-    body: Center(
-      child: Text('List $_counter', style: const TextStyle(fontSize: 60))),
-    floatingActionButton: FloatingActionButton(
-      onPressed: _incrementCounter,
-      tooltip: 'Increment',
-      child: const Icon(Icons.add),
-    ),
-  );
+  Widget build(BuildContext content) {
+    final tabs = [
+      Container(),
+      Container(),
+    ];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Lists'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.zero,
+        ),
+        onPressed: () => showDialog(
+          context: context,
+          builder: (BuildContext context) => AddToDoWidget(),
+        ),
+        tooltip: 'Add new to-do',
+      ),
+    );
+  }
 }

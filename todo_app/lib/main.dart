@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
       type: BottomNavigationBarType.fixed,
       currentIndex: currentIndex,
       onTap:(index) => setState(() => currentIndex = index),
-      items: [
+      items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Home',
