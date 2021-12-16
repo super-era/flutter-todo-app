@@ -4,7 +4,7 @@ import 'todo_form_widget.dart';
 
 class AddToDoWidget extends StatefulWidget {
   @override
-  _AddToDoWidgetState createState() => _AddToDoWidgetState()
+  _AddToDoWidgetState createState() => _AddToDoWidgetState();
 }
 
 class _AddToDoWidgetState extends State<AddToDoWidget> {
@@ -15,7 +15,7 @@ class _AddToDoWidgetState extends State<AddToDoWidget> {
   @override
   Widget build(BuildContext context) => AlertDialog(
     content: Column(
-      children: const [
+      children: [
         Text(
           'Add To-do',
           style: TextStyle(
@@ -23,14 +23,13 @@ class _AddToDoWidgetState extends State<AddToDoWidget> {
             fontSize: 22,
           )
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         ToDoFormWidget(
-          onChangedTitle: (title) => setState() => this.title = title,
-          onChangedDescription: (description) => setState() => this.description = description,
+          onChangedTitle: (title) => setState(() => this.title = title),
+          onChangedDescription: (description) => setState(() => this.description = description),
           onSavedToDo: () {},
         ),
       ],
-
-    )
-  )
+    ),
+  );
 }
