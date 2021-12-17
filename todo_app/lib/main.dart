@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/provider/todos.dart';
 
 import 'page/home_page.dart';
 import 'page/list_page.dart';
@@ -13,12 +15,13 @@ void main() {
 
 class ToDo extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+    create: (context) => ToDosProvider(),
+    child: MaterialApp(
       title: 'To-Do List',
       home: MainPage()
-    );
-  }
+    ),
+  );
 }
 
 // class ToDo extends StatelessWidget {
