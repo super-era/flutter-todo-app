@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_app/model/todo.dart';
+import 'package:todo_app/provider/todos.dart';
+import 'package:provider/provider.dart';
 
 class ToDoWidget extends StatelessWidget {
   final ToDo todo;
@@ -11,37 +13,41 @@ class ToDoWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Slidable(
-    key: Key(todo.id),
-    startActionPane: ActionPane(
-      motion: const ScrollMotion(),
-      dismissible: DismissiblePane(
-        onDismissed: () {}
+  Widget build(BuildContext context) => ClipRRect(
+    borderRadius: BorderRadius.circular(16),
+    child: Slidable(
+      startActionPane: ActionPane(
+        key: Key(todo.id),
+        motion: const ScrollMotion(),
+        dismissible: DismissiblePane(
+          onDismissed: () {}
+        ),
+        children: const [
+          SlidableAction(
+            onPressed: () {},
+            backgroundColor: Colors.green,
+            foregroundColor: Colors.white,
+            icon: Icons.edit,
+            label: 'Edit',
+          ), 
+        ]
       ),
-      children: const [
-        SlidableAction(
-          onPressed: () {},
-          backgroundColor: Colors.green,
-          foregroundColor: Colors.white,
-          icon: Icons.edit,
-          label: 'Edit',
-        ), 
-      ]
-    ),
-    endActionPane: ActionPane(
-      motion: const ScrollMotion(),
-      dismissible: DismissiblePane(
-        onDismissed: () {}
-      ),
-      children: const [
-        SlidableAction(
-          onPressed: () {},
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.white,
-          icon: Icons.delete,
-          label: 'Delete',
-        ), 
-      ]
+      endActionPane: ActionPane(
+        key: Key(todo.id),
+        motion: const ScrollMotion(),
+        dismissible: DismissiblePane(
+          onDismissed: () {}
+        ),
+        children: const [
+          SlidableAction(
+            onPressed: deleteToDo(context, todo),
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+            icon: Icons.delete,
+            label: 'Delete',
+          ), 
+        ]
+      )
     )
   );
 
@@ -54,7 +60,15 @@ class ToDoWidget extends StatelessWidget {
           activeColor: Theme.of(context).primaryColor,
           checkColor: Colors.white,
           value: todo.isDone,
-          onChanged: (_) {},
+          onChanged: (_) {
+            final provider = 
+              Provider.of<ToDosProvider>(context, listen: false);
+            final isDone = provider.toggleToDoStatus(todo);
+            Utils.showSnackBar(
+              context,
+              isDone ? 'Task marked complete!' : 'Task marked incomplete!',
+            );
+          },
         ),
         const SizedBox(width: 20),
         Expanded(
@@ -83,4 +97,11 @@ class ToDoWidget extends StatelessWidget {
       ],
     )
   );
+
+  void deleteToDo(BuildContext context, ToDo todo) {
+    final provider = Provider.of<ToDosProvider>(context, listen: false);
+    provider.removeToDo(todo);
+
+    Utils.showSnackBar(context, 'Task deleted!');
+  }
 }

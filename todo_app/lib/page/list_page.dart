@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:todo_app/widget/add_todo_widget.dart';
-
 import 'package:todo_app/provider/todos.dart';
-
 import 'package:provider/provider.dart';
+import 'package:todo_app/widget/todo_list_widget.dart';
+import 'package:todo_app/widget/completed_list_widget.dart';
 
-class ListPage extends StatelessWidget {
+class _ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
     create: (context) => ToDosProvider(),
@@ -27,7 +26,7 @@ class _ListPageState extends State<ListPage> {
   Widget build(BuildContext content) {
     final tabs = [
       ToDoListWidget(),
-      Container(),
+      CompletedListWidget(),
     ];
 
     return Scaffold(
