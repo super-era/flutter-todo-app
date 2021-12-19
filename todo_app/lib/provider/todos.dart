@@ -23,6 +23,8 @@ class ToDosProvider extends ChangeNotifier {
 
   List<ToDo> get todos => _todos.where((todo) => todo.isDone == false).toList();
 
+  List<ToDo> get todosCompleted => _todos.where((todo) => todo.isDone == true).toList();  
+
   void addToDo(ToDo todo) {
     _todos.add(todo);
     notifyListeners();
@@ -38,5 +40,12 @@ class ToDosProvider extends ChangeNotifier {
     notifyListeners();
     
     return todo.isDone;
+  }
+
+  void updateToDo(ToDo todo, String title, String description) {
+    todo.title = title;
+    todo.description = description;
+
+    notifyListeners();
   }
 }
