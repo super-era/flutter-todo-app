@@ -7,31 +7,25 @@ import 'package:todo_app/widget/todo_widget.dart';
 class ToDoListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ToDoWidget(
-      todo: ToDo(
-        createdTime: DateTime.now(),
-        title: 'walk dog',
-      ),
-    );
-    // final provider = Provider.of<ToDosProvider>(context);
-    // final todos = provider.todos;
-    // return todos.isEmpty
-    //   ? Center(
-    //     child: const Text(
-    //         'No todos',
-    //         style: TextStyle(fontSize: 20),
-    //       )
-    //     )
-    //   : ListView.separated(
-    //   physics: BouncingScrollPhysics(),
-    //   padding: EdgeInsets.all(16),
-    //   separatorBuilder: (context, index) => Container(height: 8),
-    //   itemCount: todos.length,
-    //   itemBuilder: (context, index) {
-    //     final todo = todos[index];
+    final provider = Provider.of<ToDosProvider>(context);
+    final todos = provider.todos;
+    return todos.isEmpty
+      ? const Center(
+        child: Text(
+            'No todos',
+            style: TextStyle(fontSize: 20),
+          )
+        )
+      : ListView.separated(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.all(16),
+      separatorBuilder: (context, index) => Container(height: 8),
+      itemCount: todos.length,
+      itemBuilder: (context, index) {
+        final todo = todos[index];
 
-    //     return ToDoWidget(todo: todo);
-    //   },
-    // );
+        return ToDoWidget(todo: todo);
+      },
+    );
   }
 }

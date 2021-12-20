@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_app/model/todo.dart';
 import 'package:todo_app/provider/todos.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/widget/todo_form_widget.dart';
 import 'package:todo_app/widget/todo_form_widget.dart';
 
 
