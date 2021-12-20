@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/model/todo.dart';
-import 'package:todo_app/provider/todos.dart';
 import 'todo_form_widget.dart';
+import 'package:todo_app/provider/todos.dart';
 import 'package:provider/provider.dart';
 
 class AddToDoWidget extends StatefulWidget {
@@ -51,7 +51,9 @@ class _AddToDoWidgetState extends State<AddToDoWidget> {
       );
 
       final provider = Provider.of<ToDosProvider>(context, listen: false);
-      )
+      provider.addToDo(todo);
+
+      Navigator.of(context).pop();
     }
   }
   
