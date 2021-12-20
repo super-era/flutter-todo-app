@@ -19,6 +19,7 @@ class ToDoFormWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
     child: Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         buildTitle(),
         SizedBox(height: 8),

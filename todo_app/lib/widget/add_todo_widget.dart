@@ -19,8 +19,9 @@ class _AddToDoWidgetState extends State<AddToDoWidget> {
     content: Form(
       key: _formKey,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          const Text(
             'Add To-do',
             style: TextStyle(
               fontWeight: FontWeight.bold,
