@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/provider/todos.dart';
 
-import 'page/home_page.dart';
-import 'page/list_page.dart';
-import 'page/tracker_page.dart';
-import 'page/profile_page.dart';
+import 'package:todo_app/page/home_page.dart';
+import 'package:todo_app/page/list_page.dart';
+import 'package:todo_app/page/tracker_page.dart';
+import 'package:todo_app/page/profile_page.dart';
 
 void main() {
   runApp(ToDo());
@@ -18,6 +18,7 @@ class ToDo extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
     create: (context) => ToDosProvider(),
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'To-Do List',
       home: MainPage()
     ),

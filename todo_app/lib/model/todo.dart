@@ -12,8 +12,8 @@ class ToDo {
   ToDo({
     required this.createdTime,
     required this.title,
-    this.description = "",
-    this.id = "",
+    this.description = '',
+    this.id = '',
     this.isDone = false,
   });
 }
