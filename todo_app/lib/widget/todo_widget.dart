@@ -27,7 +27,7 @@ class ToDoWidget extends StatelessWidget {
         ),
         children: [
           SlidableAction(
-            onPressed: editToDo(context, todo),
+            onPressed: (_) {}, // editToDo(context, todo),
             backgroundColor: Colors.green,
             foregroundColor: Colors.white,
             icon: Icons.edit,
