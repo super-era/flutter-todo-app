@@ -25,12 +25,12 @@ class ToDosProvider extends ChangeNotifier {
 
   List<ToDo> get todosCompleted => _todos.where((todo) => todo.isDone == true).toList();  
 
-  void addToDo(ToDo todo) {
+  void addToDo(ToDo todo) async {
     _todos.add(todo);
     notifyListeners();
   }
 
-  void removeToDo(ToDo todo) {
+  void removeToDo(ToDo todo) async {
     _todos.remove(todo);
     notifyListeners();
   }
@@ -42,7 +42,7 @@ class ToDosProvider extends ChangeNotifier {
     return todo.isDone;
   }
 
-  void updateToDo(ToDo todo, String title, String description) {
+  void updateToDo(ToDo todo, String title, String description) async {
     todo.title = title;
     todo.description = description;
 

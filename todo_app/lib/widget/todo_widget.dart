@@ -27,7 +27,7 @@ class ToDoWidget extends StatelessWidget {
         ),
         children: [
           SlidableAction(
-            onPressed: (_) {}, // editToDo(context, todo),
+            onPressed: editToDo(context, todo),
             backgroundColor: Colors.green,
             foregroundColor: Colors.white,
             icon: Icons.edit,
@@ -104,14 +104,14 @@ class ToDoWidget extends StatelessWidget {
     ),
   );
 
-  deleteToDo(BuildContext context, ToDo todo) {
+  deleteToDo(BuildContext context, ToDo todo) async {
     final provider = Provider.of<ToDosProvider>(context, listen: false);
     provider.removeToDo(todo);
 
     Utils.getCurrentSnackBar(context, 'Task deleted!');
   }
 
-  editToDo(BuildContext context, ToDo todo) {
+  editToDo(BuildContext context, ToDo todo) async {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => editToDoPage(todo: todo),
