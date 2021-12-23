@@ -30,7 +30,7 @@ class ToDosProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeToDo(ToDo todo) async {
+  Future<void> removeToDo(ToDo todo) async {
     _todos.remove(todo);
     notifyListeners();
   }
