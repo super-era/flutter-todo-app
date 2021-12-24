@@ -18,7 +18,6 @@ class ToDo extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
     create: (context) => ToDosProvider(),
     child: MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'To-Do List',
       home: MainPage()
     ),
