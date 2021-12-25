@@ -12,8 +12,10 @@ class ToDoListWidget extends StatelessWidget {
     return todos.isEmpty
       ? const Center(
         child: Text(
-            'No todos',
-            style: TextStyle(fontSize: 20),
+            'Wow, such empty',
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black12,),
           )
         )
       : ListView.separated(
