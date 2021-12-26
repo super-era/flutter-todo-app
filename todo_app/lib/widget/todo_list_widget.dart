@@ -15,7 +15,7 @@ class ToDoListWidget extends StatelessWidget {
             'Wow, such empty',
             style: TextStyle(
               fontSize: 20,
-              color: Colors.black12,),
+              color: Colors.black38,),
           )
         )
       : ListView.separated(
