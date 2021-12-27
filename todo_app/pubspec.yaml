@@ -41,6 +41,9 @@ dependencies:
   # slideable
   flutter_slidable: ^1.1.0
 
+  # calendar
+  table_calendar: ^3.0.3
+
 
 dev_dependencies:
   flutter_test:

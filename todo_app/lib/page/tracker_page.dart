@@ -1,29 +1,15 @@
 import 'package:flutter/material.dart';
-class TrackerPage extends StatefulWidget {
-  @override
-  _TrackerPageState createState() => _TrackerPageState();
-}
-
-class _TrackerPageState extends State<TrackerPage> {
-  int _counter = 0;
-
-    void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+import 'package:table_calendar/table_calendar.dart';
+class TrackerPage extends StatelessWidget {
   @override
   Widget build(BuildContext content) => Scaffold(
     appBar: AppBar(
-      title: const Text('Tracker'),
+      title: const Text('Task Tracker'),
     ),
-    body: Center(
-      child: Text('Tracker $_counter', style: const TextStyle(fontSize: 60))),
-    floatingActionButton: FloatingActionButton(
-      onPressed: _incrementCounter,
-      tooltip: 'Increment',
-      child: const Icon(Icons.add),
+    body: TableCalendar(
+      firstDay: DateTime.utc(2010, 1, 1),
+      lastDay: DateTime.utc(2030, 12, 31),
+      focusedDay: DateTime.now(),
     ),
   );
 }
