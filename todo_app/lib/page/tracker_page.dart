@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:todo_app/model/event.dart';
 class TrackerPage extends StatefulWidget {
   @override
   _TrackerPageState createState() => _TrackerPageState();
@@ -14,7 +15,7 @@ class _TrackerPageState extends State<TrackerPage> {
     appBar: AppBar(
       title: const Text('Task Tracker'),
     ),
-    body: TableCalendar(
+    body: TableCalendar<Event>(
       calendarFormat: _calendarFormat,
       onFormatChanged: (format) {
         setState(() {
@@ -24,6 +25,7 @@ class _TrackerPageState extends State<TrackerPage> {
       firstDay: DateTime.utc(2010, 1, 1),
       lastDay: DateTime.utc(2030, 12, 31),
       focusedDay: DateTime.now(),
+      eventLoader: _getEventsForDay,
       selectedDayPredicate: (day) {
         return isSameDay(_selectedDay, day);
       },
@@ -38,4 +40,8 @@ class _TrackerPageState extends State<TrackerPage> {
       },
     ),
   );
+
+  List<Event> _getEventsForDay(DateTime day) {
+    return kEvents[day] ?? [];
+  }
 }
