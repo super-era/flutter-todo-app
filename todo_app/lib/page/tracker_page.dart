@@ -22,8 +22,8 @@ class _TrackerPageState extends State<TrackerPage> {
           _calendarFormat = format;
         });
       },
-      firstDay: DateTime.utc(2010, 1, 1),
-      lastDay: DateTime.utc(2030, 12, 31),
+      firstDay: DateTime.utc(1950),
+      lastDay: DateTime.utc(2050),
       focusedDay: DateTime.now(),
       eventLoader: _getEventsForDay,
       selectedDayPredicate: (day) {
