@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:todo_app/model/event.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
+import 'package:flutter_clean_calendar/clean_calendar_event.dart';
+
 class TrackerPage extends StatefulWidget {
   @override
   _TrackerPageState createState() => _TrackerPageState();
@@ -16,33 +17,54 @@ class _TrackerPageState extends State<TrackerPage> {
     appBar: AppBar(
       title: const Text('Task Tracker'),
     ),
-    body: TableCalendar<Event>(
-      calendarFormat: _calendarFormat,
-      onFormatChanged: (format) {
-        setState(() {
-          _calendarFormat = format;
-        });
-      },
-      firstDay: DateTime.utc(1950),
-      lastDay: DateTime.utc(2050),
-      focusedDay: DateTime.now(),
-      eventLoader: _getEventsForDay,
-      selectedDayPredicate: (day) {
-        return isSameDay(_selectedDay, day);
-      },
-      onDaySelected: (selectedDay, focusedDay) {
-        setState(() {
-          _selectedDay = selectedDay;
-          _focusedDay = focusedDay;
-        });
-      },
-      onPageChanged: (focusedDay) {
-        _focusedDay = focusedDay;
-      },
+    body: Column(
+      children: <Widget>[
+        Container(
+          child: Calendar(
+            weekDays:['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            events: _events,
+            onDateSelected: (date) => _handleNewDate(date),
+            isExpandable: true,
+            eventDoneColor: Colors.green,
+            selectedColor: Colors.blue,
+            todayColor: Colors.lightBlue,
+            locale: 'en_EN',
+          ),
+        ),
+        _buildEventList()
+      ],
     ),
-  );
+  ); 
 
-  List<Event> _getEventsForDay(DateTime day) {
-    return kEvents[day] ?? [];
+  Widget _buildEventList() {
+    return Expanded(
+      child: ListView.builder(
+        padding: EdgeInsets.all(0.0),
+        itemBuilder: (BuildContext context, int index) {
+          final CleanCalendarEvent event = _selectedEvents[index];
+          final String start =
+            DateFormat('HH:mm').format(event.startTime).toString();
+          final String end =
+            DateFormat('HH:mm').format(event.endTime).toString();
+          return ListTile(
+            contentPadding:
+              EdgeInsets.only(left: 2.0, right: 8.0, top: 2.0, bottom: 2.0),
+            leading: Container(
+              width: 10.0,
+              color: event.color,
+            ),
+            title: Text(event.summary),
+            subtitle:
+              event.description.isNotEmpty ? Text(event.description) : null,
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Text(start), Text(end)],
+            ),
+            onTap: () {},
+          );
+        },
+        itemCount: _selectedEvents.length,
+      ),
+    );
   }
 }
